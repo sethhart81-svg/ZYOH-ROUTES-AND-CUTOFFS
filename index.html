@@ -30,6 +30,14 @@
 
 <h1>ZYOH ROUTES AND SCHEDULES</h1>
 
+<div id="et-clock" style="
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
+    color:#003366;
+    margin-bottom:20px;">
+</div>
+
 <table>
   <tr>
     <th>Route</th>
@@ -86,6 +94,28 @@
 <p>¹Subject to Carrier availability</p>
 <p>²2X service is available from certain National Zones for specific branches served within the local district.</p>
 <p>³Cut-Off Times for 2T Stock Transfers to Pittsburgh District dependent on local schedules.</p>
+<script>
+function updateETTime() {
+    const now = new Date();
 
+    const etTime = now.toLocaleString("en-US", {
+        timeZone: "America/New_York",
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+    });
+
+    document.getElementById("et-clock").innerHTML =
+        "Current Eastern Time: " + etTime + " ET";
+}
+
+updateETTime();
+setInterval(updateETTime, 1000);
+</script>
 </body>
 </html>
